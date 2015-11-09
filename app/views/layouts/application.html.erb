@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TallerUniRuacs</title>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<%= csrf_meta_tags %>
+</head>
+<body>
+	
+	<!-- <ol class="breadcrumb">
+		<li><a href="/">Inicio</a></li>
+		<li><a href="/tareas">Tareas</a></li>
+		<li><a href="/tareas/new">Nueva tarea</a></li>
+	</ol> -->
+
+	<div class="navbar navbar-default navbar-static-top ">
+		<div class="container">
+			<a href="#" class="navbar-brand">Taller de rails</a>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/">Inicio</a></li>
+				<li><a href="/tareas">Tareas</a></li>
+				<li><a href="/tareas/new">Nueva tarea</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="container">
+		<!-- <div class="col-xs-12 col-md-offset-2 col-md-8"> -->
+			<% if flash.notice %>
+				<div class="alert alert-success" role="alert"><%= flash.notice %></div>
+			<% end %>
+			<% if flash.alert %>
+				<div class="alert alert-warning" role="alert"><%= flash.alert %></div>
+			<% end %>
+			
+			<%= yield %>
+		<!-- </div> -->
+	</div>
+
+</body>
+</html>

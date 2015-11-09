@@ -1,0 +1,33 @@
+<div class="well ">
+	
+	<h1><%= @tarea.titulo %></h1>
+	<blockquote>
+		<p><%= @tarea.titulo %></p>
+	</blockquote>
+</div>
+
+<hr>
+
+<%= form_tag("/tareas/#{@tarea.id}/pasos", method: :post, class:"input-group") do %>
+	
+	<%= text_field_tag :nombre, "", class:"form-control input-lg", placeholder: "Nombre del paso a realizar" %>
+
+	<span class="input-group-btn">
+		<%= submit_tag "Agregar paso", class:"btn btn-success btn-lg " %>
+	</span>
+<% end %>
+
+<br>
+
+<ul class="list-group">
+	<% @tarea.steps.each_with_index do |paso, i| %>
+		<li class="list-group-item">
+			<div class="btn-group pull-right" role="group">	
+				<%= link_to "/tareas/#{@tarea.id}/pasos/#{paso.id}", class:"btn btn-xs btn-danger", title:"Eliminar", data:{confirm:"Seguro que quieres eliminar esta paso?"}, method: :delete do %>
+					<i class="glyphicon glyphicon-trash"></i>
+				<%end%>
+			</div>
+			<h4><%= i+1 %>. <%= paso.nombre %></h4>
+		</li>
+	<% end %>
+</ul>

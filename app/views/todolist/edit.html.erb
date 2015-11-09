@@ -1,0 +1,13 @@
+<%= form_tag("/tareas/#{@tarea.id}", method: :patch) do %>
+	<h1 class="text-center"> tarea</h1>
+
+	<%= label_tag :titulo, "Título" %>
+	<%= text_field_tag :titulo, @tarea.titulo , placeholder: "Titulo de la tarea", class:"form-control" %>
+	
+	<br>
+	<%= label_tag :descripcion, "Descripción" %>
+	<%= text_area_tag :descripcion, @tarea.descripcion , placeholder: "Descripción de la tarea", class:"form-control" %>
+	
+	<br>
+	<%= submit_tag "Actualizar", class:"btn btn-block btn-success"%>
+<%end%>

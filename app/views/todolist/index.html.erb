@@ -1,0 +1,49 @@
+
+<h1 class="text-center">Tareas por hacer</h1>
+<hr>
+
+<div class="text-center">
+	<a href="/tareas/new" class="btn btn-default btn-lg btn-block" title="Nueva tarea">
+		<i class="glyphicon glyphicon-plus"></i>
+	</a>
+</div>
+<br>
+<ul class="list-group">
+	<% @lista.each do |tarea| %>
+		<li class="list-group-item <%= 'list-group-item-success' if tarea.estado %>">
+			<div class="btn-group pull-right" role="group" aria-label="...">
+				
+				<%= link_to "Ver Pasos","/tareas/#{tarea.id}/pasos", class:"btn btn-sm btn-default", title:"Ver" %>
+				
+				<% if tarea.estado %>
+					<%= link_to "/tareas/#{tarea.id}", class:"btn btn-sm btn-warning", title:"No Completada", method:"put" do %>
+						<i class="glyphicon glyphicon-remove"></i>
+					<% end %>
+				<%else%>
+					<%= link_to "/tareas/#{tarea.id}", class:"btn btn-sm btn-success", title:"Completado", method:"put" do %>
+						<i class="glyphicon glyphicon-ok"></i>
+					<% end %>
+				<%end%>
+
+				<%= link_to "/tareas/#{tarea.id}/edit", class:"btn btn-sm btn-info", title:"Actualizar" do %>
+					<i class="glyphicon glyphicon-pencil"></i>
+				<%end%>
+
+				<%= link_to "/tareas/#{tarea.id}", class:"btn btn-sm btn-danger", title:"Eliminar", data:{confirm:"Seguro que quieres eliminar esta tarea?"}, method: :delete do %>
+					<i class="glyphicon glyphicon-trash"></i>
+				<%end%>
+
+
+			</div>
+			
+			<h3 class="list-group-item-heading"><%= tarea.titulo %></h3>
+
+			<p class="list-group-item-text">
+				<%= tarea.descripcion %>
+				<br>
+				<%= tarea.created_at.in_time_zone("Central America").strftime("%d/%m/%y - %I:%M %p") %>
+			</p>
+		</li>
+	<% end %>
+</ul>
+
