@@ -36,7 +36,10 @@
 
 			</div>
 			
-			<h3 class="list-group-item-heading"><%= tarea.titulo %></h3>
+			<h3 class="list-group-item-heading">
+				<%= "(COMPLETADO)" if tarea.estado %>
+				<%= tarea.titulo %>
+			</h3>
 
 			<p class="list-group-item-text">
 				<%= tarea.descripcion %>
